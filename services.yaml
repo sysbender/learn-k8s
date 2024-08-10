@@ -6,8 +6,8 @@ metadata:
 spec:
   # this define which pod is represented by this service
   selector:
-    mylabelname: webapp
-    release: "0-5"
+    app: webapp
+
   ports:
   - name: http
     port: 80
