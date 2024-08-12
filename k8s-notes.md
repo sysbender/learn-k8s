@@ -61,3 +61,32 @@ options ndots:5
 
 default namespace `default.svc.cluster.local`
 
+
+## microservice
+
+
+
+https://github.com/DickChesterwood/k8s-fleetman
+
+clean all: `kubectl delete -f .`
+
+### queue
+
+### position-simulator
+env select properties file
+`SPRING_PROFILES_ACTIVE=production-microservice`
+
+check log `kubectl logs  position-simulator-74759dfb5f-wq8zv`
+
+* not need service
+### position-tracker
+rest api: 8080
+* /vehicles/{vehicle name}  : City TruCk; City%20Truck
+* 'http://192.168.1.100:30020/vehicles/City%20Truck'
+env select properties file
+`SPRING_PROFILES_ACTIVE=production-microservice`
+
+
+
+
+

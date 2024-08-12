@@ -1,0 +1,54 @@
+apiVersion: v1
+
+kind: Service
+metadata:
+  name: fleetman-webapp
+spec:
+  # this define which pod is represented by this service
+  selector:
+    app: webapp
+
+  ports:
+  - name: http
+    port: 80
+    # port on container (optional)
+    # port exported for service
+    targetPort: 80
+    nodePort: 30080
+  # ClusterIP - internal; NodePort - expose through node , greater 30000; LoadBalancer - for cloud 
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-queue
+spec:
+  selector:
+    app: queue
+
+  ports:
+
+  - name: http
+    port: 8161
+    nodePort: 30010 # access from outside of cluster
+
+  - name: endpoint
+    port: 61616 # access only from inside cluster
+
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-position-tracker # dns
+spec:
+  selector:
+    app: position-tracker
+  ports:
+  - name: http
+    port: 8080
+    #targetPort: <Target Port>
+    nodePort: 30020
+  type: NodePort
